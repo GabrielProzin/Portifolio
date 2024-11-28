@@ -1,0 +1,194 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --bg-color: #1f2f46;
+  --secondary-bg: #28527a;
+  --text-color: #d9e6f2;
+  --accent-color: #4fa3d9;
+}
+
+body {
+  background: linear-gradient(135deg, var(--bg-color), var(--secondary-bg));
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+/* Cabeçalho */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(31, 47, 70, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 10%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.header .logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.header .logo span {
+  color: var(--accent-color);
+}
+
+.navbar a {
+  margin: 0 1.5rem;
+  color: var(--text-color);
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: var(--accent-color);
+}
+
+.gradient-btn {
+  padding: 0.8rem 2rem;
+  border-radius: 5rem;
+  background: linear-gradient(135deg, var(--secondary-bg), var(--accent-color));
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.gradient-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Seção Home */
+.home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 10%;
+  gap: 3rem;
+}
+
+.home-content {
+  flex: 1;
+  max-width: 50%; /* Define o limite para a largura do texto */
+}
+
+.home-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.home-content h1 span {
+  color: var(--accent-color);
+}
+
+.home-content h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.home-content p {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center; /* Centraliza os ícones */
+  gap: 1rem; /* Espaçamento entre os ícones */
+  margin-bottom: 1.5rem; /* Espaçamento para os botões */
+}
+
+.social-icons a {
+  font-size: 2rem;
+  color: var(--accent-color);
+  transition:
+    transform 0.3s,
+    color 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: var(--text-color);
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center; /* Centraliza os botões */
+  gap: 1.5rem; /* Espaçamento entre os botões */
+}
+
+.btn-view,
+.btn-download {
+  padding: 0.8rem 2rem;
+  border-radius: 5rem;
+  color: white;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: transform 0.3s;
+}
+
+.btn-view {
+  background: linear-gradient(
+    135deg,
+    #4fa3d9,
+    #28527a
+  ); /* Cor para visualizar */
+}
+
+.btn-view:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #28527a, #4fa3d9);
+}
+
+.btn-download {
+  background: linear-gradient(135deg, #28527a, #4fa3d9); /* Cor para download */
+}
+
+.btn-download:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #4fa3d9, #28527a);
+}
+
+.home-img {
+  flex: 0 0 350px; /* Ajusta a largura fixa */
+  display: flex;
+  justify-content: flex-start; /* Move a imagem mais para a esquerda */
+  align-items: center;
+}
+
+.home-img img {
+  width: 350px; /* Mantém o tamanho aumentado */
+  height: 350px;
+  border-radius: 50%; /* Torna a imagem redonda */
+  box-shadow:
+    0 0 20px rgba(79, 163, 217, 0.7),
+    0 0 40px rgba(79, 163, 217, 0.5);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.home-img img:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 0 30px rgba(79, 163, 217, 0.8),
+    0 0 60px rgba(79, 163, 217, 0.6);
+}
