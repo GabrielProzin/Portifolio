@@ -27,10 +27,18 @@ body {
   z-index: 1000;
   background: rgba(31, 47, 70, 0.8);
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Espaça a logo e o menu */
   align-items: center;
   padding: 1.5rem 10%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.navbar {
+  display: flex;
+  gap: 2rem; /* Espaçamento entre os itens */
+  position: absolute; /* Centraliza em relação ao header */
+  left: 50%; /* Move para o centro horizontal */
+  transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
 }
 
 .header .logo {
@@ -48,26 +56,12 @@ body {
   color: var(--text-color);
   font-weight: 500;
   text-decoration: none;
+  font-size: 1.2rem; /* Aumente este valor para ajustar o tamanho */
   transition: 0.3s;
 }
 
 .navbar a:hover {
   color: var(--accent-color);
-}
-
-.gradient-btn {
-  padding: 0.8rem 2rem;
-  border-radius: 5rem;
-  background: linear-gradient(135deg, var(--secondary-bg), var(--accent-color));
-  color: white;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.gradient-btn:hover {
-  transform: scale(1.1);
 }
 
 /* Seção Home */
@@ -81,7 +75,7 @@ body {
 
 .home-content {
   flex: 1;
-  max-width: 50%; /* Define o limite para a largura do texto */
+  max-width: 50%;
 }
 
 .home-content h1 {
@@ -107,9 +101,9 @@ body {
 
 .social-icons {
   display: flex;
-  justify-content: center; /* Centraliza os ícones */
-  gap: 1rem; /* Espaçamento entre os ícones */
-  margin-bottom: 1.5rem; /* Espaçamento para os botões */
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .social-icons a {
@@ -127,8 +121,8 @@ body {
 
 .btn-group {
   display: flex;
-  justify-content: center; /* Centraliza os botões */
-  gap: 1.5rem; /* Espaçamento entre os botões */
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .btn-view,
@@ -146,11 +140,7 @@ body {
 }
 
 .btn-view {
-  background: linear-gradient(
-    135deg,
-    #4fa3d9,
-    #28527a
-  ); /* Cor para visualizar */
+  background: linear-gradient(135deg, #4fa3d9, #28527a);
 }
 
 .btn-view:hover {
@@ -159,7 +149,7 @@ body {
 }
 
 .btn-download {
-  background: linear-gradient(135deg, #28527a, #4fa3d9); /* Cor para download */
+  background: linear-gradient(135deg, #28527a, #4fa3d9);
 }
 
 .btn-download:hover {
@@ -168,27 +158,144 @@ body {
 }
 
 .home-img {
-  flex: 0 0 350px; /* Ajusta a largura fixa */
+  flex: 0 0 auto;
   display: flex;
-  justify-content: flex-start; /* Move a imagem mais para a esquerda */
+  justify-content: flex-end;
   align-items: center;
 }
 
 .home-img img {
-  width: 350px; /* Mantém o tamanho aumentado */
-  height: 350px;
-  border-radius: 50%; /* Torna a imagem redonda */
+  width: 385px;
+  height: 385px;
+  border-radius: 50%;
   box-shadow:
     0 0 20px rgba(79, 163, 217, 0.7),
     0 0 40px rgba(79, 163, 217, 0.5);
   transition:
     transform 0.4s ease,
     box-shadow 0.4s ease;
+  transform: translateX(-20px);
 }
 
 .home-img img:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) translateX(-20px);
   box-shadow:
     0 0 30px rgba(79, 163, 217, 0.8),
     0 0 60px rgba(79, 163, 217, 0.6);
+}
+
+/* Seção SOBRE */
+
+/* Estilo para a seção Sobre */
+.about {
+  background: var(--secondary-bg);
+  color: var(--text-color);
+  padding: 4rem 10%;
+  text-align: center;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent-color);
+}
+
+.about p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.9rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ajuste para o scroll automático */
+section {
+  scroll-margin-top: 90px; /* Define um espaço extra igual à altura aproximada do header */
+}
+
+/* Seção Projetos */
+.projects {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 4rem 10%;
+  text-align: center;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--accent-color);
+}
+
+/* Lista de Projetos */
+.project-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.project-item {
+  width: 300px;
+  background: var(--secondary-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.project-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Thumbnail do Projeto */
+.project-thumbnail {
+  width: 100%; /* Ocupa 100% da largura do contêiner */
+  height: auto; /* Ajusta a altura automaticamente para manter a proporção */
+  object-fit: contain; /* Evita cortes na imagem */
+  cursor: pointer;
+  background: #000; /* Adicione um fundo para imagens com proporções não padrão */
+}
+
+/* Contêiner do Projeto */
+.project-item {
+  width: 700px; /* Ajuste o tamanho do contêiner */
+  background: var(--secondary-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s; /* Transição suave */
+}
+
+.project-item:hover {
+  transform: scale(1.1); /* Aumenta o tamanho em 10% */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Destaca o contêiner */
+}
+
+/* Imagem do Projeto */
+.project-thumbnail {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* Descrição do Projeto */
+.project-description {
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color);
 }
