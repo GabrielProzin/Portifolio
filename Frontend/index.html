@@ -43,31 +43,38 @@
           funcionalidade.
         </p>
         <div class="social-icons">
-          <a href="https://github.com/GabrielProzin" target="_blank">
+          <a
+            href="https://github.com/GabrielProzin"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
             <i class="bx bxl-github"></i>
           </a>
           <a
             href="https://www.linkedin.com/in/gabrielmendesurl/"
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
           >
             <i class="bx bxl-linkedin"></i>
           </a>
         </div>
         <div class="btn-group">
-          <!-- Botão para visualizar o CV -->
           <a
             href="curriculo/CurriculoGabrielMendes.pdf"
             target="_blank"
             class="btn btn-view"
+            rel="noopener noreferrer"
+            aria-label="Visualizar Currículo"
           >
             <i class="fa-solid fa-eye"></i>Visualizar CV
           </a>
-
-          <!-- Botão para baixar o CV -->
           <a
             href="curriculo/CurriculoGabrielMendes.pdf"
             download="CurriculoGabrielMendes"
             class="btn btn-download"
+            aria-label="Baixar Currículo"
           >
             <i class="fa-solid fa-download"></i>Download CV
           </a>
@@ -78,10 +85,12 @@
         <img
           src="photo/WhatsApp Image 2024-12-03 at 9.36.39 AM.png"
           alt="Gabriel Mendes"
+          loading="lazy"
         />
       </div>
     </section>
 
+    <!-- Seção Sobre -->
     <section class="about" id="about">
       <div class="about-content">
         <h2>Sobre Mim</h2>
@@ -98,65 +107,127 @@
       </div>
     </section>
 
+    <!-- Seção Projetos -->
     <section class="projects" id="projects">
       <div class="section-title">
         <h2>Meus Projetos</h2>
       </div>
       <div class="project-list">
-        <!-- Projeto 1 -->
         <div class="project-item">
           <a
             href="https://github.com/GabrielProzin/clone-tabnews"
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Clone TabNews no GitHub"
           >
             <img
               src="ImgProjeto/imagem_2024-12-03_111944460.png"
               alt="Clone TabNews"
               class="project-thumbnail"
+              loading="lazy"
             />
           </a>
           <p class="project-description">
-            Este projeto, inspirado no Curso.dev, tem como objetivo recriar as
-            funcionalidades do site tabnews.com.br, como páginas dinâmicas para
-            publicação de conteúdo, autenticação de usuários, gerenciamento de
-            permissões e interações em tempo real. Ele utiliza práticas modernas
-            de desenvolvimento e ferramentas para garantir qualidade e
-            consistência no código. Atualmente, o projeto está em
-            desenvolvimento e conta apenas com a interface inicial que exibe
-            esta mensagem. Também já está vinculado ao meu domínio próprio,
-            prowulf.com.br, permitindo acompanhar o progresso e visualizar as
-            atualizações futuras.
+            Inspirado no Curso.dev, recria funcionalidades do site
+            tabnews.com.br, incluindo publicação de conteúdo e autenticação de
+            usuários.
           </p>
         </div>
 
-        <!-- Projeto 2 -->
         <div class="project-item">
           <a
             href="https://github.com/GabrielProzin/ImersaoBackEnd"
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Imersão Back-End no GitHub"
           >
             <img
               src="ImgProjeto/imagem_2024-12-03_110024271.png"
               alt="Imersão Back-End"
               class="project-thumbnail"
+              loading="lazy"
             />
           </a>
           <p class="project-description">
-            Este projeto, criado durante a Imersão Dev Back-End da Alura, teve
-            como foco o desenvolvimento de um servidor funcional, com
-            implementação de rotas, middleware e interação com banco de dados.
-            Além das funcionalidades básicas, o projeto incorpora a integração
-            com a IA Gemini, que permite analisar imagens e gerar descrições
-            detalhadas com base em seu conteúdo, ampliando as possibilidades de
-            uso e interação. Todas as funcionalidades foram testadas com
-            Postman, seguindo boas práticas, como a configuração de variáveis de
-            ambiente e o uso de uma arquitetura limpa e escalável.
+            Criado na Imersão Dev Back-End, foca em servidores, rotas e
+            integração com IA para análise de imagens.
           </p>
         </div>
-
-        <!-- Adicione mais projetos conforme necessário -->
       </div>
     </section>
+
+    <!-- Seção Contato -->
+    <section class="contact" id="contact">
+      <h2 class="section-title">Entre em Contato</h2>
+      <p>Tem interesse em colaborar? Envie uma mensagem!</p>
+      <form id="contact-form" class="contact-form" autocomplete="off">
+        <input
+          type="text"
+          id="honeypot"
+          name="honeypot"
+          style="display: none"
+        />
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input
+            type="text"
+            id="name"
+            name="user_name"
+            placeholder="Seu Nome"
+            required
+            maxlength="50"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="user_email"
+            placeholder="Seu E-mail"
+            required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            maxlength="50"
+          />
+        </div>
+        <div class="form-group">
+          <label for="message">Mensagem</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Sua Mensagem"
+            rows="5"
+            maxlength="300"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="submit-btn" aria-label="Enviar Mensagem">
+          Enviar Mensagem
+        </button>
+      </form>
+      <div id="form-message" class="form-message"></div>
+      <div class="contact-links">
+        <a href="mailto:gabrielalexandrino2004@gmail.com">
+          <i class="bx bx-envelope"></i> E-mail
+        </a>
+        <a
+          href="https://www.linkedin.com/in/gabrielmendesurl/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="bx bxl-linkedin"></i> LinkedIn
+        </a>
+        <a
+          href="https://wa.me/5562981253588"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="bx bxl-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <script src="scripts.js"></script>
   </body>
