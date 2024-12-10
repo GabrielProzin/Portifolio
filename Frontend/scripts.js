@@ -1,3 +1,14 @@
+// Configurações gerais
+const EMAIL_JS_CONFIG = {
+  publicKey: "s7eWkxR-sAUpWSHJh",
+  serviceId: "service_9zcbv3j",
+  templateId: "template_s3dukvq",
+};
+const POPUP_TIMEOUT = 2000; // Tempo em ms para exibir o pop-up
+
+// Inicialize o EmailJS
+emailjs.init(EMAIL_JS_CONFIG.publicKey);
+
 // Menu Toggle (Caso precise para mobile)
 const menuIcon = document.querySelector("#menu-icon");
 const navbar = document.querySelector(".navbar");
@@ -8,102 +19,93 @@ if (menuIcon) {
   });
 }
 
-// Inicialize o EmailJS com sua Public Key
-emailjs.init("s7eWkxR-sAUpWSHJh"); // Substitua com sua Public Key encontrada no painel do EmailJS
-
-// Variáveis para controle de submissão
-let lastSubmitTime = 0; // Controle de taxa de submissão (rate limiting)
-
-// Função para sanitizar entradas de texto
-function sanitizeInput(input) {
-  const element = document.createElement("div");
-  element.innerText = input;
-  return element.innerHTML;
-}
-
 // Adicione o evento ao formulário
 const contactForm = document.getElementById("contact-form");
 if (contactForm) {
-  contactForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita o reload da página
-
-    // Obter os campos do formulário
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
     const nameField = document.getElementById("name");
     const emailField = document.getElementById("email");
     const messageField = document.getElementById("message");
-    const honeypotField = document.getElementById("honeypot");
     const formMessage = document.getElementById("form-message");
 
     const name = nameField.value.trim();
     const email = emailField.value.trim();
     const message = messageField.value.trim();
-    const honeypot = honeypotField ? honeypotField.value.trim() : "";
 
-    // Limpar mensagens anteriores
-    formMessage.innerText = "";
-    formMessage.className = "";
-
-    // Validações básicas
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (honeypot !== "") {
-      formMessage.innerText = "Erro: Detecção de bot.";
+    // Validações simplificadas
+    if (!name || name.length < 2 || name.length > 50) {
+      formMessage.textContent = "Por favor, insira um nome válido.";
       formMessage.className = "error";
       return;
     }
-
-    if (name === "" || name.length < 2 || name.length > 50) {
-      formMessage.innerText =
-        "Por favor, insira um nome válido (entre 2 e 50 caracteres).";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      formMessage.textContent = "Por favor, insira um e-mail válido.";
       formMessage.className = "error";
       return;
     }
-
-    if (!emailRegex.test(email)) {
-      formMessage.innerText = "Por favor, insira um e-mail válido.";
-      formMessage.className = "error";
-      return;
-    }
-
-    if (message === "" || message.length < 10 || message.length > 300) {
-      formMessage.innerText =
+    if (!message || message.length < 10 || message.length > 300) {
+      formMessage.textContent =
         "A mensagem deve conter entre 10 e 300 caracteres.";
       formMessage.className = "error";
       return;
     }
 
-    // Prevenção contra envios frequentes
-    const currentTime = new Date().getTime();
-    if (currentTime - lastSubmitTime < 30000) {
-      formMessage.innerText = "Aguarde 30 segundos antes de enviar novamente.";
-      formMessage.className = "error";
-      return;
-    }
-    lastSubmitTime = currentTime;
-
-    // Sanitização de inputs
-    const sanitizedData = {
-      name: sanitizeInput(name), // Chave deve corresponder a {{name}}
-      email: sanitizeInput(email), // Chave deve corresponder a {{email}}
-      message: sanitizeInput(message), // Chave deve corresponder a {{message}}
-    };
-
-    // Exibir status de envio
-    formMessage.innerText = "Enviando...";
+    // Envio da mensagem
+    formMessage.textContent = "Enviando...";
     formMessage.className = "info";
 
-    // Envia o formulário usando EmailJS
-    emailjs.send("service_9zcbv3j", "template_s3dukvq", sanitizedData).then(
-      function () {
-        formMessage.innerText = "Mensagem enviada com sucesso!";
-        formMessage.className = "success";
-        contactForm.reset(); // Reseta o formulário após envio
-      },
-      function (error) {
-        formMessage.innerText = "Erro ao enviar a mensagem. Tente novamente.";
-        formMessage.className = "error";
-        console.error("Erro:", error);
-      }
-    );
+    try {
+      await emailjs.send(
+        EMAIL_JS_CONFIG.serviceId,
+        EMAIL_JS_CONFIG.templateId,
+        {
+          from_name: name, // Alinhado com o template
+          reply_to: email, // Alinhado com o template
+          message, // Alinhado com o template
+        }
+      );
+      formMessage.textContent = "Mensagem enviada com sucesso!";
+      formMessage.className = "success";
+      contactForm.reset();
+    } catch (error) {
+      console.error(error);
+      formMessage.textContent = "Erro ao enviar a mensagem. Tente novamente.";
+      formMessage.className = "error";
+    }
   });
+}
+
+// Função para copiar o e-mail
+const copyEmailButton = document.getElementById("copy-email");
+const emailText = document.getElementById("user-email");
+
+if (copyEmailButton) {
+  copyEmailButton.addEventListener("click", () => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard
+        .writeText(emailText.textContent)
+        .then(() => showCopiedPopup("E-mail copiado com sucesso!"))
+        .catch((err) => console.error("Erro ao copiar o e-mail:", err));
+    } else {
+      alert("Seu navegador não suporta cópia automática.");
+    }
+  });
+}
+
+// Função para exibir o pop-up "Copiado!"
+function showCopiedPopup(message) {
+  const popup = document.createElement("div");
+  popup.textContent = message;
+  popup.className = "copied-popup";
+
+  // Posicionar e exibir
+  document.body.appendChild(popup);
+  setTimeout(() => popup.classList.add("show"), 50);
+
+  // Remover após o tempo definido
+  setTimeout(() => {
+    popup.classList.remove("show");
+    setTimeout(() => popup.remove(), 300);
+  }, POPUP_TIMEOUT);
 }

@@ -227,45 +227,127 @@ section {
 
 .section-title h2 {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: var(--accent-color);
 }
 
+.section-title p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: var(--text-color);
+  line-height: 1.8;
+}
+
 .project-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  justify-content: center;
 }
 
 .project-item {
-  width: 700px;
   background: var(--secondary-bg);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
   transition:
     transform 0.3s,
     box-shadow 0.3s;
 }
 
 .project-item:hover {
-  transform: scale(1.1);
+  transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .project-thumbnail {
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 200px;
+  object-fit: cover;
   cursor: pointer;
 }
 
-.project-description {
-  padding: 1rem;
+.project-details {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.project-details h3 {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+.project-details p {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-color);
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tech-list li {
+  background: var(--accent-color);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.project-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.project-links a:hover {
+  background: #003f63;
+  transform: translateY(-3px);
+}
+
+/* Link estilizado para "TabNews" */
+.tabnews-link {
+  color: #66fcf1;
+  text-decoration: none;
+  font-weight: bold;
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+.tabnews-link:hover {
+  color: #ffffff;
+  text-shadow:
+    0 0 5px #66fcf1,
+    0 0 10px #66fcf1;
 }
 
 /* Estilo da Seção Contato */
@@ -389,4 +471,64 @@ section {
 
 .contact-links i {
   margin-right: 0.5rem;
+}
+
+/* Estilo para o e-mail destacado */
+.email-display {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.email-display p {
+  margin: 0.5rem 0;
+}
+
+.email-display span {
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.copy-btn {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent-color);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: #003f63;
+}
+
+/* Estilo para o pop-up de 'Copiado!' */
+.copied-popup {
+  position: absolute;
+  background-color: #4fa3d9;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  transform: translateX(-10px); /* Ajuste visual */
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.copied-popup.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.email-display {
+  position: relative; /* Garante que o pop-up seja posicionado em relação ao contêiner */
 }
